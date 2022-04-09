@@ -1,0 +1,36 @@
+package com.Seleniumreusability_Function;
+
+public class Reusable {
+	public SeleniumUtilities(WebDriver driver) {
+		this.driver=driver;
+		
+	}
+	public void to_take_screenshot(String path) {
+		TakesScreenshot ts=(TakesScreenshot)driver;
+		File source=ts.getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(source,new File(path));
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	public void getTitle() {
+		
+		System.out.println(driver.getTitle());
+	
+	}
+	public void Explicitlywait(String Locator) {
+		WebDriverWait wait=new WebDriverWait(driver,20);
+		wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(Locator))));
+		
+	}
+	public void dropdown(WebElement element,String selectedvalue) {
+		Select select = new Select(element); 
+		select.selectByVisibleText(selectedvalue);
+		
+	}
+	
+	
+
+}
+}
